@@ -48,6 +48,15 @@ exports.labslunchroulette = functions.pubsub.schedule("0 9 * * THU").onRun(async
     restaurants = restaurants.filter(
         restaurant => !latest.map(rest => rest.id).includes(restaurant.id)
     )
+    // Remove restaurants that have the same cuisine as the last two restaurants we've visited
+    restaurants = restaurants.filter(
+        restaurant =>
+            !latest
+                .slice(1)
+                .slice(-2)
+                .map(rest => rest.cuisine)
+                .includes(restaurant.cuisine)
+    )
 
     const pickOfTheWeek = getRandomElement(restaurants)
     const pickID = pickOfTheWeek.id
