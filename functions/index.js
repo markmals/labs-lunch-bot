@@ -61,11 +61,12 @@ exports.labslunchroulette = functions.pubsub
         )
 
         // Remove the oldest restaurant from latest if there are 6 restaurants in latest
-        if (latest.length === 6)
+        if (latest.length === 6) {
             await db
                 .collection("latest")
                 .doc(latest[0].id)
                 .delete()
+        }
         // Push our pick of the week to the database
         db.collection("latest")
             .doc(pickID)
