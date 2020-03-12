@@ -1,9 +1,12 @@
-const { WebClient } = require("@slack/web-api")
-const slack = new WebClient("xoxb-21341612592-944350723799-Wp01I6EQk5LGPMeBYqVf6MhE")
-const { Client } = require("@googlemaps/google-maps-services-js")
-const maps = new Client({})
+// Firebase imports
 const functions = require("firebase-functions")
 const admin = require("firebase-admin")
+// Slack imports
+const { WebClient } = require("@slack/web-api")
+const slack = new WebClient(functions.config().labslunch.slack_key)
+// Google Maps imports
+const { Client } = require("@googlemaps/google-maps-services-js")
+const maps = new Client({})
 
 /**
  * Retrieves a random element from an array
