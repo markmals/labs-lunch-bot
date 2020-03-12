@@ -18,7 +18,7 @@ const getRandomElement = array => {
     return array[Math.floor(Math.random() * array.length)]
 }
 
-exports.labslunchroulette = functions.pubsub.schedule("0 0 9 * * THU").onRun(async () => {
+exports.labslunchroulette = functions.pubsub.schedule("0 9 * * THU").onRun(async () => {
     admin.initializeApp(functions.config().firebase)
     const db = admin.firestore()
 
